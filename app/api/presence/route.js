@@ -1,0 +1,20 @@
+// app/api/send-message/route.js
+import { getApifyResult } from "@/utils/getApifyResult";
+import { sendWhatsAppMessage } from "@/utils/twilioClient";
+import { formatPresenceMessage } from "@/utils/formatPresenceMessage";
+
+export async function POST(request) {
+  const apifyResult = await getApifyResult();
+
+    const message = formatPresenceMessage(apifyResult);
+    try {
+        const result = await sendWhatsAppMessage(message);
+        return new Response(JSON.stringify({ success: true, message: result }), {
+        status: 200,
+        });
+    } catch (error) {
+        return new Response(JSON.stringify({ success: false, error: error.message }), {
+        status: 500,
+        });
+    }
+}

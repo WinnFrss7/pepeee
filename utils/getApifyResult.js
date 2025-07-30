@@ -27,10 +27,10 @@ async function waitForRunToFinish(runId, interval = 10000, timeout = 180000) {
 }
 
 // Main function to export
-export async function getApifyResult() {
+export async function getApifyResult(user) {
     try {
         // Start the Apify task (but it might not be finished yet)
-        const run = await client.task('mjF9o2BmEhD5RNbKs').call();
+        const run = await client.task('IihgmGu5kT3xmDwwo').call({qs_data: user});
 
         // Wait until the run has completed
         await waitForRunToFinish(run.id);

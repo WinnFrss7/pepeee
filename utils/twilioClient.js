@@ -10,7 +10,7 @@ export async function sendWhatsAppMessage(text) {
   try {
     const message = await client.messages.create({
       from: 'whatsapp:+14155238886',
-      to: 'whatsapp:+6289692019685',
+      to: 'whatsapp:+6285754834306',
       body: text, // 👈 use body instead of contentSid
     });
 
